@@ -10,8 +10,9 @@ namespace TiendaData
 
         IEnumerable<RegistroPedidos> GetAll();
 
+        
         void Add(RegistroPedidos nuevoRegistroPedidos);
-        void ActualizarRegistroPedido(int idRegistroPedido);
+        void ActualizarRegistroPedido(int idRegistroPedido, int abonoPago);
         //void ActualizarEstadoRegistroPedido(int idRegistroPedido, string nombreEstado);
 
         RegistroPedidos GetById(int idRegistroPedido);

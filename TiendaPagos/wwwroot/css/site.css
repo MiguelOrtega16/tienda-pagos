@@ -121,6 +121,18 @@ body {
         background-color: #eee;
     }
 
+    #catalogoIndexTabla th {
+        vertical-align: middle;
+    }
+
+.table-condensed .tabla-general td {
+    vertical-align: middle;
+}
+
+.table-condensed .tabla-general tr:hover {
+    background-color: #eee;
+}
+
 #patrons {
     background: url('/images/patron.jpeg') bottom left 15% no-repeat #555;
 }
@@ -159,9 +171,20 @@ body {
 
 #tablaProductos td {
     text-align: center;
+    vertical-align: middle;
     border-bottom: 1px solid #ddd;
 }
 
+.tabla-general td {
+    text-align: center;
+    vertical-align: middle;
+    border-bottom: 1px solid #ddd;
+}
+.tabla-general th {
+    text-align: center;
+    vertical-align:middle;
+    border-bottom: 1px solid #ddd;
+}
 .authorLabel {
     font-weight: bold;
     font-size: 1.3em;

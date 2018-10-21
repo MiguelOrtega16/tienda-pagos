@@ -23,7 +23,7 @@ namespace TiendaServices
             _context.SaveChanges();
         }
 
-    
+
         public IEnumerable<RegistroPedidos> GetAll()
         {
             return _context.RegistroPedidos
@@ -43,32 +43,60 @@ namespace TiendaServices
         {
             return GetAll()
                 .Where(registroProducto => registroProducto.IdProducto == idProducto)
-                .OrderBy(registroProducto => registroProducto.RegistroPedidosDetalle.FechaNovedad); ;
+                .OrderBy(registroProducto => registroProducto.RegistroPedidosDetalle.FechaNovedad); 
         }
 
         IEnumerable<RegistroPedidos> IRegistroPedidos.GetRegistrosPorCliente(int idCliente)
         {
             return GetAll()
                  .Where(registroProducto => registroProducto.Cliente.Cedula == idCliente || registroProducto.Cliente.Id == idCliente)
-                 .OrderBy(registroProducto => registroProducto.RegistroPedidosDetalle.FechaNovedad); ;
+                 .OrderBy(registroProducto => registroProducto.RegistroPedidosDetalle.FechaNovedad); 
         }
 
-        public void ActualizarRegistroPedido(int idRegistroPedido)
+        public void ActualizarRegistroPedido(int idRegistroPedido, int abonoPago)
         {
-            throw new NotImplementedException();
-        }
-  
-        private void ActualizarEstadoRegistroPedido(int idRegistroPedido, string nombreEstado)
-        {
-            var item = _context.RegistroPedidos
-                  .FirstOrDefault(registroPedidos => registroPedidos.Id == idRegistroPedido);
+
+            var item = GetById(idRegistroPedido);
 
             _context.Update(item);
 
-            item.EstadosPedidos = _context.EstadosPedidos
-                .FirstOrDefault(ep => ep.Nombre == nombreEstado);
+            item.TotalPagado = item.TotalPagado + abonoPago;
+            item.PendientePorPagar = item.TotalPagado - item.PendientePorPagar;
+
+            // Actualiza el estado de la compra si se pagó el monto total
+            if (item.TotalPagado == item.ValorTotalCompra)
+            {
+                ActualizarEstadoRegistroPedido(item, "Finalizado");
+            }
+
+            // Añade el registro de abono a la compra hecha con anterioridad
+            AñadirTrazabilidadPagoRealizado( item.Id, abonoPago);
 
             _context.SaveChanges();
+
+    }
+
+        private void AñadirTrazabilidadPagoRealizado(int idRegistroPedido, int abonoPago)
+        {
+            var now = DateTime.Now;
+
+            var registroPedidoDetalle = new RegistroPedidosDetalle
+            {
+                IdRegistroPedido = idRegistroPedido,
+                TotalPagado = abonoPago,
+                FechaNovedad = now
+            };
+
+            _context.Add(registroPedidoDetalle);
+        }
+
+        private void ActualizarEstadoRegistroPedido(RegistroPedidos registroPedidoItem, string nombreEstado)
+        {
+            _context.Update(registroPedidoItem);
+
+            registroPedidoItem.EstadosPedidos = _context.EstadosPedidos
+                .FirstOrDefault(ep => ep.Nombre == nombreEstado);
+
         }
     }
 }

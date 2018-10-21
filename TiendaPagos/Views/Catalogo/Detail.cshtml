@@ -1,6 +1,7 @@
 ﻿@model TiendaPagos.Models.Catalogo.ProductosDetailModel
+
 <div class="container">
-    <div class="page-header clearfix detailHeading" >
+    <div class="page-header clearfix detailHeading">
         <h2 class="text-muted">Detalle de Productos</h2>
     </div>
 </div>
@@ -41,3 +42,47 @@
         </div>
     </div>
 </div>
+
+@if (Model.registroPedidosProductos.Any())
+{
+    <div class="jumbotron" id="tablaDetalleVentas">
+        <table class="table table-bordered tabla-general" id="catalogoIndexTabla">
+            <thead>
+                <tr>
+                    <th>Id Venta</th>
+                    <th>Cliente</th>
+                    <th>Cantidad Comprada</th>
+                    <th>Estado de Venta</th>
+                    <th>Total Pagado</th>
+                    <th>Pendiente por Pagar</th>
+                    <th>Fecha de Venta</th>
+                    <th>Actualizar</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var venta in Model.registroPedidosProductos)
+                {
+                <tr class="ventaRow">
+                    <td class="">@venta.Id</td>
+                    <td class="">@venta.Cliente.PrimerNombre  @venta.Cliente.SegundoNombre</td>
+                    <td class="">@venta.CantidadProducto</td>
+                    <td class="">@venta.EstadosPedidos.Nombre</td>
+                    <td class="">@venta.TotalPagado.ToString("c")</td>
+                    <td class="">@venta.PendientePorPagar.ToString("c")</td>
+                    <td class="">@venta.FechaNovedad.ToString("d")</td>
+                    <td class="">
+                        <button type="button" class="btn btn-default" aria-label="Left Align">
+                            <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+                        </button>
+                    </td>
+
+
+                  
+                </tr>
+                }
+            </tbody>
+        </table>
+
+    </div>
+
+}

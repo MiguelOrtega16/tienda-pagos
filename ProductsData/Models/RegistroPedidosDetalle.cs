@@ -13,8 +13,6 @@ namespace TiendaData.Models
 
         public double TotalPagado { get; set; }
 
-        public double PendientePorPagar { get; set; }
-
         public DateTime FechaNovedad { get; set; }
         
     }

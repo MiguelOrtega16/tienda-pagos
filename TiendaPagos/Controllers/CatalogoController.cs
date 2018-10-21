@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System.Linq;
 using TiendaData;
+using TiendaData.Models;
 using TiendaPagos.Models.Catalogo;
 
 namespace TiendaPagos.Controllers
@@ -8,9 +9,12 @@ namespace TiendaPagos.Controllers
     public class CatalogoController : Controller
     {
         private IProductosTienda _productos;
-        public CatalogoController(IProductosTienda productos)
+        private IRegistroPedidos _pedidos;
+
+        public CatalogoController(IProductosTienda productos, IRegistroPedidos pedidos)
         {
             _productos = productos;
+            _pedidos = pedidos;
         }
 
         public IActionResult Index()
@@ -41,6 +45,19 @@ namespace TiendaPagos.Controllers
         public IActionResult Detail(int id)
         {
             var producto = _productos.GetById(id);
+            var registroPedidos = _pedidos.GetRegistrosPorProducto(id)
+                .Select(a => new RegistroPedidos
+                {
+                    Id = a.Id,
+                    Cliente = a.Cliente,
+                    CantidadProducto = a.CantidadProducto,
+                    EstadosPedidos= a.EstadosPedidos,
+                    TotalPagado = a.TotalPagado,
+                    PendientePorPagar = a.PendientePorPagar,
+                    ValorTotalCompra = a.ValorTotalCompra,
+                    FechaNovedad = a.FechaNovedad              
+                });
+
 
     
 
@@ -53,7 +70,8 @@ namespace TiendaPagos.Controllers
                 DescripcionProducto = producto.DescripcionProducto,
                 Costo = producto.Costo,
                 Estado = producto.Estados.Nombre,
-                UrlImagen = producto.UrlImagen
+                UrlImagen = producto.UrlImagen,
+                registroPedidosProductos =  registroPedidos
             };
             return View(model);
         }
