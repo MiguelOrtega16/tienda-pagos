@@ -1,0 +1,45 @@
+﻿@model TiendaPagos.Models.Catalogo.ProductosIndexModel
+
+<div>
+    <h3> Catálogo de Productos</h3>
+    <div id="tablaProductos">
+        <table class="table table-condensed" id="catalogoIndexTabla">
+            <thead>
+                <tr>
+                    <th>Imagen</th>
+                    <th>Producto</th>
+                    <th>Cantidad Disponible</th>
+                    <th>Capacidad</th>
+                    <th>Costo</th>
+                    <th>Estado</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var producto in Model.Productos)
+                {
+                <tr class="productoRow">
+                    <td class="">
+                        <a asp-controller="Catalogo" asp-action="Detail" asp-route-id="@producto.Id">
+                            <img src="@producto.UrlImagen" class="imageCell" />
+                        </a>
+                    </td>
+                    <td class="">@producto.NombreProducto</td>
+                    <td class="">@producto.CantidadProductos</td>
+                    @if (producto.Capacidad == 0)
+                    {
+                        <td class="">@producto.Capacidad</td>
+                    }
+                    else
+                    {
+                        <td class="">@producto.Capacidad ml</td>
+                    }
+
+                    <td class="">$@producto.Costo</td>
+                    <td class="">@producto.Estado</td>
+                </tr>
+                }
+            </tbody>
+        </table>
+     
+    </div>
+</div>

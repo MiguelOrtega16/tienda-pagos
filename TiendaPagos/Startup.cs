@@ -7,8 +7,12 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using ProductsData;
+using TiendaData;
+using TiendaServices;
 
 namespace TiendaPagos
 {
@@ -33,6 +37,14 @@ namespace TiendaPagos
 
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+            services.AddSingleton(Configuration);
+            services.AddScoped<IProductosTienda, ProductosTiendaService>();
+            services.AddScoped<IRegistroPedidos, RegistroPedidosService>();
+
+            services.AddDbContext<TiendaContext>(options => 
+            options.UseSqlServer(Configuration.GetConnectionString("ConexionTienda")));
+
+            
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

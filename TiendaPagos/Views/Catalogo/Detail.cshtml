@@ -1,0 +1,43 @@
+﻿@model TiendaPagos.Models.Catalogo.ProductosDetailModel
+<div class="container">
+    <div class="page-header clearfix detailHeading" >
+        <h2 class="text-muted">Detalle de Productos</h2>
+    </div>
+</div>
+
+<div class="jumbotron">
+    <div class="row">
+        <div class="col-md-4">
+            <div>
+                <img class="detailImage" src="~/@Model.UrlImagen" />
+            </div>
+        </div>
+        <div class="col-md-8 detailProductos">
+            <div>
+                <p id="itemNombreProducto">@Model.NombreProducto</p>
+                <p id="itemDescripcion">@Model.DescripcionProducto</p>
+                @if (Model.Capacidad == 0)
+                {
+                    <p id="itemCapacidad">@Model.Capacidad</p>
+                }
+                else
+                {
+                    <p id="itemCapacidad">@Model.Capacidad ml</p>
+                }
+
+                <p id="itemCosto">$@Model.Costo</p>
+                <p id="itemCantidadProductos">@Model.CantidadProductos unidades.</p>
+                <p id="itemEstado">@Model.Estado</p>
+
+                @if (Model.CantidadProductos > 0)
+                {
+
+                    <p><a class="btn btn-lg btn-success" role="button" asp-controller="Catalogo" asp-action="AñadirRegistro" asp-route-id="@Model.IdProducto">Añadir Venta</a></p>
+
+                }
+                <p><a class="btn btn-lg btn-info" role="button" asp-controller="Catalogo" asp-action="AñadirInventario" asp-route-id="@Model.IdProducto">Añadir Inventario</a></p>
+
+            </div>
+        </div>
+    </div>
+</div>
