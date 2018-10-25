@@ -14,6 +14,7 @@ namespace TiendaData
 
         string GetNombreProducto(int id);
         int GetCantidadProducto(int id);
+        string GetDescripcionProducto(int id);
         double GetPrecioProducto(int id);
         decimal GetCapacidadProducto(int id);
         string GetEstadoProducto(int id);

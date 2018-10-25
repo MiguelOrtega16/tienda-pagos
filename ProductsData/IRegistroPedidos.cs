@@ -18,5 +18,9 @@ namespace TiendaData
         RegistroPedidos GetById(int idRegistroPedido);
         IEnumerable<RegistroPedidos> GetRegistrosPorProducto(int idProducto);
         IEnumerable<RegistroPedidos> GetRegistrosPorCliente(int idCliente);
+        IEnumerable<RegistroPedidosDetalle> GetDetallePedido(int idPedido);
+
+
+
     }
 }

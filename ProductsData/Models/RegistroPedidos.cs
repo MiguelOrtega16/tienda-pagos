@@ -31,6 +31,6 @@ namespace TiendaData.Models
 
         public virtual Clientes Cliente { get; set; }
 
-        public virtual RegistroPedidosDetalle RegistroPedidosDetalle { get; set; }
+       // public virtual RegistroPedidosDetalle RegistroPedidosDetalle { get; set; }
     }
 }
