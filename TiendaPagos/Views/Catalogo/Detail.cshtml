@@ -71,9 +71,11 @@
                     <td class="">@venta.PendientePorPagar.ToString("c")</td>
                     <td class="">@venta.FechaNovedad.ToString("d")</td>
                     <td class="">
-                        <button type="button" class="btn btn-default" aria-label="Left Align">
-                            <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
-                        </button>
+                        <form>
+                            <a  class="btn btn-default" aria-label="Left Align" asp-controller="Catalogo" asp-action="UpdateVenta" asp-route-id="@venta.Id">
+                                <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+                            </a>
+                        </form>
                     </td>
 
 

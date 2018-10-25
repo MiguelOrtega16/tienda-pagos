@@ -75,5 +75,47 @@ namespace TiendaPagos.Controllers
             };
             return View(model);
         }
+
+        public IActionResult UpdateVenta(int id)
+        {
+
+            var registroPedidos = _pedidos.GetById(id);
+
+            var listarDetallePedidos = _pedidos.GetDetallePedido(id);
+   
+            var nombreProducto = _productos.GetNombreProducto(registroPedidos.IdProducto);
+
+            var descripcionProducto = _productos.GetDescripcionProducto(registroPedidos.IdProducto);
+ 
+
+            var model = new VentasUpdateModel
+            {
+               Id = registroPedidos.Id,
+               IdProducto   = registroPedidos.IdProducto,
+               descripcionProducto = descripcionProducto,
+               CantidadProducto = registroPedidos.CantidadProducto,
+               Cliente = registroPedidos.Cliente,
+               EstadosPedidos = registroPedidos .EstadosPedidos,
+               FechaNovedad = registroPedidos.FechaNovedad,
+               nombreProducto = nombreProducto,
+               PendientePorPagar = registroPedidos.PendientePorPagar,
+               TotalPagado = registroPedidos.TotalPagado,
+               ValorTotalCompra = registroPedidos.ValorTotalCompra,
+               registroPedidosDetalle = listarDetallePedidos
+
+            };
+            return View(model);
+        }
+
+        [HttpPost]
+        public IActionResult AñadirAbonoVenta( int id, int abonoPedido)
+        {
+            _pedidos.ActualizarRegistroPedido(id, abonoPedido);
+            return RedirectToAction("Detail", id);
+        }
+  
     }
+
+
 }
+
