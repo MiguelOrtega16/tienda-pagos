@@ -28,8 +28,7 @@ namespace TiendaServices
         {
             return _context.RegistroPedidos
                   .Include(registroPedidos => registroPedidos.Cliente)
-                  .Include(registroPedidos => registroPedidos.EstadosPedidos)
-                  .Include(registroPedidos => registroPedidos.RegistroPedidosDetalle);
+                  .Include(registroPedidos => registroPedidos.EstadosPedidos);
         }
 
         public RegistroPedidos GetById(int idRegistroPedido)
@@ -43,14 +42,14 @@ namespace TiendaServices
         {
             return GetAll()
                 .Where(registroProducto => registroProducto.IdProducto == idProducto)
-                .OrderBy(registroProducto => registroProducto.RegistroPedidosDetalle.FechaNovedad); 
+                .OrderBy(registroProducto => registroProducto.FechaNovedad); 
         }
 
         IEnumerable<RegistroPedidos> IRegistroPedidos.GetRegistrosPorCliente(int idCliente)
         {
             return GetAll()
                  .Where(registroProducto => registroProducto.Cliente.Cedula == idCliente || registroProducto.Cliente.Id == idCliente)
-                 .OrderBy(registroProducto => registroProducto.RegistroPedidosDetalle.FechaNovedad); 
+                 .OrderBy(registroProducto => registroProducto.FechaNovedad); 
         }
 
         public void ActualizarRegistroPedido(int idRegistroPedido, int abonoPago)
@@ -61,7 +60,7 @@ namespace TiendaServices
             _context.Update(item);
 
             item.TotalPagado = item.TotalPagado + abonoPago;
-            item.PendientePorPagar = item.TotalPagado - item.PendientePorPagar;
+            item.PendientePorPagar = item.PendientePorPagar - abonoPago ;
 
             // Actualiza el estado de la compra si se pagó el monto total
             if (item.TotalPagado == item.ValorTotalCompra)
@@ -70,13 +69,13 @@ namespace TiendaServices
             }
 
             // Añade el registro de abono a la compra hecha con anterioridad
-            AñadirTrazabilidadPagoRealizado( item.Id, abonoPago);
+            AñadirTrazabilidadPagoRealizado(item.Id, abonoPago, item.PendientePorPagar);
 
             _context.SaveChanges();
 
     }
 
-        private void AñadirTrazabilidadPagoRealizado(int idRegistroPedido, int abonoPago)
+        private void AñadirTrazabilidadPagoRealizado(int idRegistroPedido, int abonoPago, int pendientePorPagar)
         {
             var now = DateTime.Now;
 
@@ -84,7 +83,9 @@ namespace TiendaServices
             {
                 IdRegistroPedido = idRegistroPedido,
                 TotalPagado = abonoPago,
-                FechaNovedad = now
+                FechaNovedad = now,
+                PendientePorPagar = pendientePorPagar
+
             };
 
             _context.Add(registroPedidoDetalle);
@@ -97,6 +98,12 @@ namespace TiendaServices
             registroPedidoItem.EstadosPedidos = _context.EstadosPedidos
                 .FirstOrDefault(ep => ep.Nombre == nombreEstado);
 
+        }
+
+        public IEnumerable<RegistroPedidosDetalle> GetDetallePedido(int idPedido)
+        {
+            return _context.RegistroPedidosDetalle
+                .Where(detallePedido => detallePedido.IdRegistroPedido == idPedido);
         }
     }
 }

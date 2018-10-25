@@ -111,7 +111,7 @@ namespace TiendaPagos.Controllers
         public IActionResult AñadirAbonoVenta( int id, int abonoPedido)
         {
             _pedidos.ActualizarRegistroPedido(id, abonoPedido);
-            return RedirectToAction("Detail", id);
+            return RedirectToAction("UpdateVenta", "Catalogo", new { id = id });
         }
   
     }

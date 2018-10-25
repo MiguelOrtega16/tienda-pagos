@@ -52,6 +52,13 @@ namespace TiendaServices
                 .Capacidad;
         }
 
+        public string GetDescripcionProducto(int id)
+        {
+            return GetAll()
+                .FirstOrDefault(producto => producto.Id == id)
+                .DescripcionProducto;
+        }
+
         public string GetEstadoProducto(int id)
         {
             var idEstado = _context.Productos
