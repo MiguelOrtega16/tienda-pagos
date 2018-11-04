@@ -11,6 +11,7 @@ namespace TiendaData
         Productos GetById(int id);
 
         void Add(Productos nuevoProducto);
+        void RestarCantidadProducto(int id, int cantidadProducto);
 
         string GetNombreProducto(int id);
         int GetCantidadProducto(int id);
@@ -19,7 +20,7 @@ namespace TiendaData
         decimal GetCapacidadProducto(int id);
         string GetEstadoProducto(int id);
 
-        
+
 
     }
 }

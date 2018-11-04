@@ -12,6 +12,7 @@ namespace TiendaData
 
         
         void Add(RegistroPedidos nuevoRegistroPedidos);
+        void AddDetalle(RegistroPedidosDetalle nuevoRegistroPedidos);
         void ActualizarRegistroPedido(int idRegistroPedido, int abonoPago);
         //void ActualizarEstadoRegistroPedido(int idRegistroPedido, string nombreEstado);
 
@@ -21,6 +22,8 @@ namespace TiendaData
         IEnumerable<RegistroPedidosDetalle> GetDetallePedido(int idPedido);
 
 
+        int GetEstadoVenta(string nombreEstado);
+        string GetNombreEstadoVentaById(int id);
 
     }
 }

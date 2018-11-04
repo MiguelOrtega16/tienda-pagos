@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using ProductsData;
 
 namespace TiendaData.Migrations
 {
     [DbContext(typeof(TiendaContext))]
-    partial class TiendaContextModelSnapshot : ModelSnapshot
+    [Migration("20181028022428_Registro de Compras v.0.4")]
+    partial class RegistrodeComprasv04
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -109,7 +111,7 @@ namespace TiendaData.Migrations
 
                     b.Property<int>("CantidadProducto");
 
-                    b.Property<int>("Cedula");
+                    b.Property<int?>("ClienteId");
 
                     b.Property<DateTime>("FechaNovedad");
 
@@ -119,15 +121,13 @@ namespace TiendaData.Migrations
 
                     b.Property<int>("PendientePorPagar");
 
-                    b.Property<int?>("RegistroPedidosDetalleId");
-
                     b.Property<int>("TotalPagado");
 
                     b.Property<int>("ValorTotalCompra");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("RegistroPedidosDetalleId");
+                    b.HasIndex("ClienteId");
 
                     b.ToTable("RegistroPedidos");
                 });
@@ -161,9 +161,9 @@ namespace TiendaData.Migrations
 
             modelBuilder.Entity("TiendaData.Models.RegistroPedidos", b =>
                 {
-                    b.HasOne("TiendaData.Models.RegistroPedidosDetalle", "RegistroPedidosDetalle")
+                    b.HasOne("TiendaData.Models.Clientes", "Cliente")
                         .WithMany()
-                        .HasForeignKey("RegistroPedidosDetalleId");
+                        .HasForeignKey("ClienteId");
                 });
 #pragma warning restore 612, 618
         }
