@@ -1,0 +1,31 @@
+﻿@model TiendaPagos.Models.Cliente.ClientesIndexModel
+@{
+    ViewBag.Title = "Clientes";
+}
+<h3>Patron Index</h3>
+<div id="clienteIndex">
+    <table class="table table-bordered table-hover"  id="clienteIndexTable">
+        <thead class="thead-dark text-center">
+            <tr>
+                <th scope="col">Perfil Cliente</th>
+                <th scope="col">Cédula</th>
+                <th scope="col">Nombre</th>
+                <th scope="col">Celular</th>
+                <th scope="col">Dirección</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var cliente in Model.Clientes)
+            {
+            <tr>
+                <td id="clienteIcon" class="text-center"><a asp-controller="Cliente" asp-action="Detail" asp-route-id="@cliente.Id"><i class="fas fa-user fa-2x"></i></a></td>
+                <td>@cliente.Cedula</td>
+                <td>@cliente.PrimerNombre @cliente.SegundoNombre</td>
+                <td>@cliente.Celular</td>
+                <td>@cliente.Direccion</td>
+            </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
