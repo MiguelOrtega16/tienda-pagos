@@ -13,6 +13,8 @@
         <link href="https://fonts.googleapis.com/css?family=Krub|Roboto" rel="stylesheet">
         <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
         <link rel="stylesheet" href="~/css/site.css" />
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+        <link rel="stylesheet" href="~/lib/font-awesome/fonts/fontawesome-webfont.svg" />
     </environment>
     <environment exclude="Development">
         <link rel="stylesheet" href="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.7/css/bootstrap.min.css"
@@ -22,27 +24,20 @@
     </environment>
 </head>
 <body>
-    <nav class="navbar navbar-inverse navbar-fixed-top">
+    <nav class="navbar navbar-expand-sm navbar-dark fixed-top bg-dark">
         <div class="container">
-            <div class="navbar-header indexBar" >
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a asp-area="" asp-controller="Home" asp-action="Index" class="navbar-brand indexBar">Traza Ventas Memé</a>
-            </div>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-expanded="false" aria-label="Toggle navigation"></button>
+            <a asp-area="" asp-controller="Home" asp-action="Index" class="navbar-brand indexBar">Traza Ventas Memé</a>
             <div class="navbar-collapse collapse indexBar">
-                <ul class="nav navbar-nav">
-                    <li>
-                        <a class="mdl-navigation__link" asp-controller="Catalogo" asp-action="Index">Catalogo</a>
+                <ul class="nav navbar-nav mr-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" asp-controller="Catalogo" asp-action="Index">Catalogo</a>
                     </li>
-                    <li>
-                        <a class="mdl-navigation__link" asp-controller="Clientes" asp-action="Index">Clientes</a>
+                    <li class="nav-item">
+                        <a class="nav-link" asp-controller="Cliente" asp-action="Index">Clientes</a>
                     </li>
-                    <li>
-                        <a class="mdl-navigation__link" asp-controller="Pedidos" asp-action="Index">Pedidos</a>
+                    <li class="nav-item">
+                        <a class="nav-link" asp-controller="Pedidos" asp-action="Index">Pedidos</a>
                     </li>
                 </ul>
             </div>

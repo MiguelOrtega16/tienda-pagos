@@ -6,84 +6,87 @@
     </div>
 </div>
 
-<div class="container" id="product-section">
+<div class="container-fluid" id="product-section">
     <div class="row">
-        <div class="col-md-6">
+        <div class="col-6">
             <div>
-                <img class="img-responsive" src="~/@Model.UrlImagen" />
+                <img class="img-fluid" src="~/@Model.UrlImagen" />
             </div>
         </div>
-        <form asp-controller="Catalogo" asp-action="GuardarVenta" method="post">
-            <div class="col-md-6">
+        <div class="col-6">
+            <form asp-controller="Catalogo" asp-action="GuardarVenta" method="post">
                 <div class="row">
-                    <div class="col-md-12">
+                    <div class="col-12">
                         <h1>@Model.nombreProducto</h1>
                     </div>
                 </div>
                 <div class="row row-bordered">
-                    <div class="col-md-12">
+                    <div class="col-12">
                         <p class="description">
                             @Model.descripcionProducto
                         </p>
                     </div>
                 </div>
                 <div class="row text-center">
-                    <div class="col-md-12">
+                    <div class="col-12">
                         <h2 class="product-price">@Model.PrecioProducto.ToString("c") c/u.</h2>
                         <span id="sumarProdId" class="btn btn-default btn-lg btn-qty" onclick="modificarCantidadProductos(this.id, cantidadProductoId, @Model.PrecioProducto);">
-                            <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+                            <span class="fa fa-plus-square fa-2x" aria-hidden="true"></span>
                         </span>
-                        <input id="cantidadProductoId" class="btn btn-default btn-lg btn-qty" min="0" max="@Model.CantidadProductoDisponible" onchange="modificarCantidadProductos(this.id, cantidadProductoId, @Model.PrecioProducto)" asp-for="CantidadComprada"  type="number" value="1" />
+                        <input id="cantidadProductoId" class="btn btn-outline-dark btn-qty" min="0" max="@Model.CantidadProductoDisponible" onchange="modificarCantidadProductos(this.id, cantidadProductoId, @Model.PrecioProducto)" asp-for="CantidadComprada" type="number" value="1" />
                         <span id="restarProdId" class="btn btn-default btn-lg btn-qty" onclick="modificarCantidadProductos(this.id,cantidadProductoId, @Model.PrecioProducto);">
-                            <span class="glyphicon glyphicon-minus" aria-hidden="true"></span>
+                            <span class="fa fa-minus-square fa-2x" aria-hidden="true"></span>
                         </span>
                     </div>
                 </div>
                 <div class="row">
-                    <div class="jumbotron">
+                    <div class="jumbotron col-12">
                         <div class="row">
-                            <div class="form-group col-md-7">
+                            <div class="form-group col-7">
                                 <label for="cedulaId">@Html.DisplayNameFor(c => c.Cliente.Cedula)</label>
                                 <input asp-for="Cliente.Cedula" type="text" class="form-control" id="cedulaId" placeholder="Documento de la persona" onchange="usuarioExiste(this.value);">
                             </div>
                         </div>
                         <div class="row">
-                            <div class="form-group col-md-6">
+                            <div class="form-group col-6">
                                 <label for="nombreId">@Html.DisplayNameFor(c => c.Cliente.PrimerNombre)</label>
                                 <input asp-for="Cliente.PrimerNombre" type="text" class="form-control" id="nombreId" placeholder="Nombre del cliente">
                             </div>
-                            <div class="form-group col-md-6">
+                            <div class="form-group col-6">
                                 <label for="nombreId">@Html.DisplayNameFor(c => c.Cliente.SegundoNombre)</label>
                                 <input asp-for="Cliente.SegundoNombre" type="text" class="form-control" id="apellidoId" placeholder="Apellidos del cliente">
                             </div>
                         </div>
                         <div class="row">
-                            <div class="form-group col-md-6">
+                            <div class="form-group col-6">
                                 <label for="direccionId">@Html.DisplayNameFor(c => c.Cliente.Direccion)</label>
                                 <input asp-for="Cliente.Direccion" type="text" class="form-control" id="direccionId" placeholder="Dirección de contacto">
                             </div>
-                            <div class="form-group col-md-6">
+                            <div class="form-group col-6">
                                 <label for="celularId">@Html.DisplayNameFor(c => c.Cliente.Celular)</label>
                                 <input asp-for="Cliente.Celular" type="number" class="form-control" id="celularId" placeholder="Celular de contacto">
                             </div>
                         </div>
                         <div class="row">
-                            <div class="form-group col-md-6">
+                            <div class="form-group col-6">
                                 <label for="totalAPagarId">@Html.DisplayNameFor(rp => rp.ValorTotalCompra)</label>
                                 <input asp-for="ValorTotalCompra" type="number" class="form-control" id="totalAPagarId" placeholder="Valor total de la compra" value="@Model.PrecioProducto">
                             </div>
-                            <div class="form-group col-md-6">
+                            <div class="form-group col-6">
                                 <label for="totalAbonoId">@Html.DisplayNameFor(rp => rp.ValorAbonado)</label>
                                 <input min="1000" asp-for="ValorAbonado" type="number" class="form-control" id="totalAbonoId" placeholder="Valor abonado" onchange="limiteAbono(totalAPagarId, totalAbonoId);">
                             </div>
                         </div>
-                        <div class="row text-center">
-                            @Html.HiddenFor(registroPedido => registroPedido.IdProducto)
-                            <button type="submit" class="btn btn-primary">Confirmar</button>
+                        <div class="row">
+                            <div class="col-12 text-center">
+                                @Html.HiddenFor(registroPedido => registroPedido.IdProducto)
+                                <button type="submit" class="btn btn-primary">Confirmar</button>
+                            </div>                             
+                            </div>
                         </div>
-                    </div>
                 </div>
-            </div>
-        </form>
+            </form>
+        </div>
+
     </div>
 </div>

@@ -10,13 +10,12 @@
 
 <form asp-controller="Catalogo" asp-action="añadirAbonoVenta" method="post">
     <div class="row">
-        <div class="col-xs-6">
-            <div class="span7">
-                <div class="panel panel-info">
-                    <div class="panel-heading">
+        <div class="col-6">
+                <div class="card">
+                    <div class="card-header bg-info">
                         <h4>Información del Cliente</h4>
                     </div>
-                    <div class="panel-body">
+                    <div class="card-body bg-light">
                         <p>
                             <strong>Nombre</strong>  : @Model.Cliente.PrimerNombre @Model.Cliente.SegundoNombre <br> <br>
                             <strong>Celular</strong> : @Model.Cliente.Celular <br><br>
@@ -25,22 +24,19 @@
                         </p>
                     </div>
                 </div>
-            </div>
         </div>
-        <div class="col-xs-6">
-            <div class="span7">
-                <div class="panel panel-info">
-                    <div class="panel-heading">
-                        <h4>Información de la venta</h4>
-                    </div>
-                    <div class="panel-body">
-                        <p>
-                            <strong>Fecha de venta</strong>   : @Model.FechaNovedad.ToString("d")<br> <br>
-                            <strong>Producto</strong>  : @Model.nombreProducto<br><br>
-                            <strong>Cantidad</strong> : @Model.CantidadProducto unidades.<br><br>
-                            <strong>Valor Total</strong> : @Model.ValorTotalCompra.ToString("c")<br><br>
-                        </p>
-                    </div>
+        <div class="col-6">
+            <div class="card">
+                <div class="card-header bg-info">
+                    <h4>Información de la venta</h4>
+                </div>
+                <div class="card-body bg-light">
+                    <p>
+                        <strong>Fecha de venta</strong>   : @Model.FechaNovedad.ToString("d")<br> <br>
+                        <strong>Producto</strong>  : @Model.nombreProducto<br><br>
+                        <strong>Cantidad</strong> : @Model.CantidadProducto unidades.<br><br>
+                        <strong>Valor Total</strong> : @Model.ValorTotalCompra.ToString("c")<br><br>
+                    </p>
                 </div>
             </div>
         </div>
@@ -71,7 +67,7 @@
         </tbody>
     </table>
     <div class="row text-right">
-        <div class="col-xs-2 col-xs-offset-8">
+        <div class="col-2 offset-8">
             <p>
                 <strong>
                     Abonado : <br>
@@ -80,7 +76,7 @@
                 </strong>
             </p>
         </div>
-        <div class="col-xs-2">
+        <div class="col-2">
             <p>
                 <strong>
                     @Model.TotalPagado.ToString("c") <br>
@@ -92,7 +88,7 @@
     </div>
     <div class="row text-right">
 
-        <div class="col-xs-12">
+        <div class="col-12">
             @Html.HiddenFor(registroPedido => registroPedido.Id)
             @if (Model.PendientePorPagar > 0)
             {
