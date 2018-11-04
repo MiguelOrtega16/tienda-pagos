@@ -17,7 +17,8 @@ namespace TiendaPagos.Models.Catalogo
         public string DescripcionProducto { get; set; }
         public string Estado { get; set; }
 
-        public IEnumerable<RegistroPedidos> registroPedidosProductos { get; set; }
+        public IEnumerable<RegistroPedidosDetalleModel> registroPedidosProductos { get; set; }
+
 
     }
 

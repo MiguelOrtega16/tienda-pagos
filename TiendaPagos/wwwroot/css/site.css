@@ -1,7 +1,7 @@
 ﻿/* Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification\ 
 for details on configuring this project to bundle and minify static web assets. */
 body {
-    padding-top: 50px;
+    padding-top:50px;
     padding-bottom: 20px;
 }
 
@@ -36,8 +36,18 @@ body {
     }
 }
 
+.mdl-layout__header-row {
+    background-color: rgb(32, 34, 41);
+}
+
+.tituloIndex{
+    font-size: 2em;
+    font-family: "Krub";
+    text-align: center;
+}
+
 .logo {
-    font-family: "Coda";
+    font-family: "Krub";
     font-size: 1.8em;
     font-weight: bold;
 }
@@ -54,6 +64,9 @@ body {
             text-decoration: none;
             transition-duration: 0.5s;
         }
+.indexBar {
+    font-family: "Roboto";
+}
 
 .page-content {
     padding: 20px;
@@ -105,12 +118,12 @@ body {
     padding: 4px;
 }
 
-#catalogoo {
-    background: url('/images/books.jpg') bottom right 15% no-repeat #555;
+#catalogo {
+    /*background: url('/images/Index/products.jpg') bottom right 15% no-repeat #555;*/
 }
 
 #catalogoIndexTabla {
-    font-size: 1.3em;
+    font-size: 1.0em;
 }
 
     #catalogoIndexTabla td {
@@ -133,16 +146,21 @@ body {
     background-color: #eee;
 }
 
-#patrons {
-    background: url('/images/patron.jpeg') bottom left 15% no-repeat #555;
+#clientes {
+    /*background: url('/images/Index/clients.jpg') 
+    bottom left 15% no-repeat #555;*/
 }
 
 .branchInfo {
     padding-top: 30px;
 }
 
-#branches {
-    background: url('/images/bldg.jpeg') bottom right 15% no-repeat #555;
+.homeLabel{
+    position:relative;
+}
+
+#pedidos {
+    /*background: url('/images/Index/pedidos.jpg') bottom right 15% no-repeat #555;*/
 }
 
 #productos {
@@ -180,11 +198,13 @@ body {
     vertical-align: middle;
     border-bottom: 1px solid #ddd;
 }
+
 .tabla-general th {
     text-align: center;
-    vertical-align:middle;
+    vertical-align: middle;
     border-bottom: 1px solid #ddd;
 }
+
 .authorLabel {
     font-weight: bold;
     font-size: 1.3em;
@@ -204,7 +224,7 @@ body {
     font-size: 1.6em;
 }
 
-#itemEstado{
+#itemEstado {
     font-weight: bold;
     font-size: 1.3em;
 }
@@ -230,12 +250,19 @@ body {
 }
 
 .detailImage {
-    width: 200px;
+    width: 280px;
     padding-bottom: 6px;
 }
 
-.detailProductos{
-    text-align:center;
+.detailImageIndex {
+    width: 280px;
+    padding-bottom: 6px;
+    position:absolute;
+}
+
+
+.detailProductos {
+    text-align: center;
 }
 
 .detailInfo {
@@ -267,3 +294,34 @@ body {
     color: #2f6fc7;
     font-weight: bold;
 }
+
+.row-bordered{
+        border-bottom: 1px solid #ccc;
+    }
+
+.row {
+    margin-bottom: 10px;
+}
+
+.add-to-cart .btn-qty {
+    width: 52px;
+    height: 46px;
+}
+
+.monospaced {
+    font-family: 'Ubuntu Mono', monospaced;
+}
+
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    margin: 0;
+}
+
+.cantCompra {
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+

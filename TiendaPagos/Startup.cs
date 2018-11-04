@@ -40,6 +40,7 @@ namespace TiendaPagos
             services.AddSingleton(Configuration);
             services.AddScoped<IProductosTienda, ProductosTiendaService>();
             services.AddScoped<IRegistroPedidos, RegistroPedidosService>();
+            services.AddScoped<IClientes, ClientesService>();
 
             services.AddDbContext<TiendaContext>(options => 
             options.UseSqlServer(Configuration.GetConnectionString("ConexionTienda")));
