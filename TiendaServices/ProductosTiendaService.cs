@@ -23,6 +23,24 @@ namespace TiendaServices
             _context.SaveChanges();
         }
 
+        public void RestarCantidadProducto(int id, int cantidadProducto)
+        {
+
+            var producto = GetById(id);
+
+            _context.Update(producto);
+
+            producto.CantidadProducto = producto.CantidadProducto - cantidadProducto;
+
+            if (producto.CantidadProducto == 0)
+            {
+                ActualizarEstadoProducto(producto, "Agotado");
+            }
+
+            _context.SaveChanges();
+
+        }
+
         public IEnumerable<Productos> GetAll()
         {
             return _context.Productos
@@ -85,5 +103,18 @@ namespace TiendaServices
                 .FirstOrDefault(producto => producto.Id == id)
                 .Costo;
         }
+
+
+
+        private void ActualizarEstadoProducto(Productos producto, string nombreEstado)
+        {
+            _context.Update(producto);
+
+            producto.Estados = _context.Estados
+                .FirstOrDefault(ep => ep.Nombre == nombreEstado);
+
+        }
+
+
     }
 }

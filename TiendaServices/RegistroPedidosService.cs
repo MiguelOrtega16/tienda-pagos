@@ -23,12 +23,17 @@ namespace TiendaServices
             _context.SaveChanges();
         }
 
+        public void AddDetalle(RegistroPedidosDetalle nuevoRegistroPedidos)
+        {
+            _context.Add(nuevoRegistroPedidos);
+            _context.SaveChanges();
+        }
+
 
         public IEnumerable<RegistroPedidos> GetAll()
         {
             return _context.RegistroPedidos
-                  .Include(registroPedidos => registroPedidos.Cliente)
-                  .Include(registroPedidos => registroPedidos.EstadosPedidos);
+                .Include(rp => rp.RegistroPedidosDetalle);
         }
 
         public RegistroPedidos GetById(int idRegistroPedido)
@@ -48,9 +53,30 @@ namespace TiendaServices
         IEnumerable<RegistroPedidos> IRegistroPedidos.GetRegistrosPorCliente(int idCliente)
         {
             return GetAll()
-                 .Where(registroProducto => registroProducto.Cliente.Cedula == idCliente || registroProducto.Cliente.Id == idCliente)
+                 .Where(registroProducto => registroProducto.Cedula == idCliente )
                  .OrderBy(registroProducto => registroProducto.FechaNovedad); 
         }
+
+        public int GetEstadoVenta(string nombreEstado)
+        {
+            return _context.EstadosPedidos
+                .FirstOrDefault(ep => ep.Nombre == nombreEstado)
+                .Id;
+        }
+
+        public string GetNombreEstadoVentaById(int id)
+        {
+            return _context.EstadosPedidos
+                 .FirstOrDefault(ep => ep.Id == id)
+                 .Nombre;
+        }
+
+        public IEnumerable<RegistroPedidosDetalle> GetDetallePedido(int idPedido)
+        {
+            return _context.RegistroPedidosDetalle
+                .Where(detallePedido => detallePedido.IdRegistroPedido == idPedido);
+        }
+
 
         public void ActualizarRegistroPedido(int idRegistroPedido, int abonoPago)
         {
@@ -95,15 +121,12 @@ namespace TiendaServices
         {
             _context.Update(registroPedidoItem);
 
-            registroPedidoItem.EstadosPedidos = _context.EstadosPedidos
-                .FirstOrDefault(ep => ep.Nombre == nombreEstado);
+            registroPedidoItem.IdEstado = _context.EstadosPedidos
+                .FirstOrDefault(ep => ep.Nombre == nombreEstado)
+                .Id;
 
         }
 
-        public IEnumerable<RegistroPedidosDetalle> GetDetallePedido(int idPedido)
-        {
-            return _context.RegistroPedidosDetalle
-                .Where(detallePedido => detallePedido.IdRegistroPedido == idPedido);
-        }
+      
     }
 }
