@@ -25,5 +25,6 @@ namespace TiendaData
         int GetEstadoVenta(string nombreEstado);
         string GetNombreEstadoVentaById(int id);
 
+
     }
 }
