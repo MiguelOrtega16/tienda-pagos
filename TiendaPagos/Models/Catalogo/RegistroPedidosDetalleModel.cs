@@ -10,7 +10,7 @@ namespace TiendaPagos.Models.Catalogo
     {
         public Clientes ClientePedido { get; set; }
         public string NombreEstado { get; set; }
-
+        public string NombreProducto { get; set; }
         
     }
 }

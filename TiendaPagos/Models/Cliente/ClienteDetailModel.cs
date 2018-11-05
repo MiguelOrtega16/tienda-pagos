@@ -3,16 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using TiendaData.Models;
+using TiendaPagos.Models.Catalogo;
 
 namespace TiendaPagos.Models.Cliente
 {
-    public class ClienteDetailModel
+    public class ClienteDetailModel : VistaClienteDetalle
     {
-        public Clientes Cliente { get; set; }
-        public int TotalComprasHechas { get; set; }
-        public int UltimoProductoComprado { get; set; }
-        public double PendientePorPagar { get; set; }
-        public double TotalPagado { get; set; }
-
+        public IEnumerable<RegistroPedidosDetalleModel> DetallePedidos { get; set; }
     }
 }

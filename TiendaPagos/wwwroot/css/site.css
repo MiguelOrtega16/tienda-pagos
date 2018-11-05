@@ -328,3 +328,16 @@ input[type=number]::-webkit-outer-spin-button {
 .bg-info {
     background-color: #46c2d696 !important;
 }
+
+.nav-tabs .nav-link {
+    border-color: #e9ecef #e9ecef #dee2e6;
+}
+
+.nav-tabs .nav-item.active {
+    border-color: #e9ecef #e9ecef #dee2e6;
+    font-size:1.1em;
+}
+
+.nav-tabs .nav-item.active .nav-link {
+    color:black;
+}
