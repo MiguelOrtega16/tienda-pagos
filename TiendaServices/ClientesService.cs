@@ -6,6 +6,7 @@ using TiendaData;
 using TiendaData.Models;
 using ProductsData;
 using System.Linq;
+using Microsoft.EntityFrameworkCore;
 
 namespace TiendaServices
 {
@@ -16,6 +17,24 @@ namespace TiendaServices
         public ClientesService(TiendaContext context)
         {
             _context = context;
+        }
+
+        public void ActualizarCliente(Clientes datosCliente)
+        {
+            var cliente = GetById(datosCliente.Id);
+
+            if (!(cliente is null))
+            {
+                _context.Update(cliente);
+
+                cliente.Celular = datosCliente.Celular;
+                cliente.Direccion = datosCliente.Direccion;
+                cliente.PrimerNombre = datosCliente.PrimerNombre;
+                cliente.SegundoNombre = datosCliente.SegundoNombre;
+
+                _context.SaveChanges();
+            }          
+
         }
 
         public void Add(Clientes nuevoCliente)
@@ -55,6 +74,12 @@ namespace TiendaServices
             var cliente = GetByCedula(cedula);
             return cliente.PrimerNombre + " " + cliente.SegundoNombre;
 
+        }
+
+        public VistaClienteDetalle GetVistaClienteDetallePorId(int id)
+        {
+            return _context.VistaClienteDetalle
+                 .FirstOrDefault(vc => vc.Id == id);
         }
     }
 }

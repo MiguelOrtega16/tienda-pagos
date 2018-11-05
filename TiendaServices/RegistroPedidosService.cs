@@ -47,14 +47,18 @@ namespace TiendaServices
         {
             return GetAll()
                 .Where(registroProducto => registroProducto.IdProducto == idProducto)
-                .OrderBy(registroProducto => registroProducto.FechaNovedad); 
+                .OrderByDescending(registroProducto => registroProducto.FechaNovedad); 
         }
 
         IEnumerable<RegistroPedidos> IRegistroPedidos.GetRegistrosPorCliente(int idCliente)
         {
+
+            var cedulaCliente = _context.Clientes
+                .FirstOrDefault(cli => cli.Id == idCliente).Cedula;
+
             return GetAll()
-                 .Where(registroProducto => registroProducto.Cedula == idCliente )
-                 .OrderBy(registroProducto => registroProducto.FechaNovedad); 
+                 .Where(registroProducto => registroProducto.Cedula == cedulaCliente)
+                 .OrderByDescending(registroProducto => registroProducto.FechaNovedad); 
         }
 
         public int GetEstadoVenta(string nombreEstado)
@@ -127,6 +131,6 @@ namespace TiendaServices
 
         }
 
-      
+
     }
 }
