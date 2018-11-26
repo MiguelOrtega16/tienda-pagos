@@ -341,3 +341,18 @@ input[type=number]::-webkit-outer-spin-button {
 .nav-tabs .nav-item.active .nav-link {
     color:black;
 }
+
+.carousel-item.catalogo {
+    height: 50vh;
+    min-height: 300px;
+    background: no-repeat center center scroll;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+.img-fluid.img-index
+{
+    height: 250px;
+}

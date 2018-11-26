@@ -10,6 +10,8 @@ namespace TiendaData
         IEnumerable<Productos> GetAll();
         Productos GetById(int id);
 
+        IEnumerable<CategoriaProducto> GetCategorias();
+
         void Add(Productos nuevoProducto);
         void RestarCantidadProducto(int id, int cantidadProducto);
 

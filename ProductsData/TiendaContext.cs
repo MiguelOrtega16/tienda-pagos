@@ -16,6 +16,7 @@ namespace ProductsData
         public DbSet<RegistroPedidos> RegistroPedidos { get; set; }
         public DbSet<EstadosPedidos> EstadosPedidos { get; set; }
         public DbSet<RegistroPedidosDetalle> RegistroPedidosDetalle { get; set; }
+        public DbSet<CategoriaProducto> CategoriaProducto { get; set; }
         #endregion
 
         #region "DbQuery"

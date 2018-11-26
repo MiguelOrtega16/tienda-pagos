@@ -24,6 +24,7 @@ namespace TiendaPagos.Controllers
         public IActionResult Index()
         {
             var productosModels = _productos.GetAll();
+            var categoriasProductos = _productos.GetCategorias();
 
             var listarResultados = productosModels
                 .Select(result => new ProductosIndexListingModel
@@ -34,12 +35,14 @@ namespace TiendaPagos.Controllers
                     NombreProducto = _productos.GetNombreProducto(result.Id),
                     Costo = _productos.GetPrecioProducto(result.Id),
                     Capacidad = _productos.GetCapacidadProducto(result.Id),
-                    Estado = _productos.GetEstadoProducto(result.Id)
+                    Estado = _productos.GetEstadoProducto(result.Id),
+                    Categoria =  result.CategoriaProducto
 
                 });
 
             var model = new ProductosIndexModel
             {
+                Categorias = categoriasProductos,
                 Productos = listarResultados
             };
 

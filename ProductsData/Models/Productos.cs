@@ -30,7 +30,7 @@ namespace TiendaData.Models
         [Required]
         public string DescripcionProducto { get; set; }
 
-        public string Color { get; set; }
+        public CategoriaProducto CategoriaProducto { get; set; }
 
     }
 }

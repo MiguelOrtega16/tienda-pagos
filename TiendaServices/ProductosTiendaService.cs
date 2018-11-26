@@ -44,13 +44,15 @@ namespace TiendaServices
         public IEnumerable<Productos> GetAll()
         {
             return _context.Productos
-                .Include( producto => producto.Estados);
+                .Include( producto => producto.Estados)
+                .Include( producto => producto.CategoriaProducto);
         }
 
         public Productos GetById(int id)
         {
             return _context.Productos
                  .Include(producto => producto.Estados)
+                 .Include(producto => producto.CategoriaProducto)
                  .FirstOrDefault(producto => producto.Id == id);
         }
 
@@ -58,6 +60,7 @@ namespace TiendaServices
         {
             return _context.Productos
                 .Include( producto => producto.Estados)
+                .Include(producto => producto.CategoriaProducto)
                 .FirstOrDefault(producto => producto.Id == id)
                 .CantidadProducto;
         }
@@ -92,6 +95,7 @@ namespace TiendaServices
         {
             return _context.Productos
                 .Include(producto => producto.Estados)
+                .Include(producto => producto.CategoriaProducto)
                 .FirstOrDefault(producto => producto.Id == id)
                 .NombreProducto;
         }
@@ -100,6 +104,7 @@ namespace TiendaServices
         {
             return _context.Productos
                 .Include(producto => producto.Estados)
+                .Include(producto => producto.CategoriaProducto)
                 .FirstOrDefault(producto => producto.Id == id)
                 .Costo;
         }
@@ -115,6 +120,9 @@ namespace TiendaServices
 
         }
 
-
+        public IEnumerable<CategoriaProducto> GetCategorias()
+        {
+            return _context.CategoriaProducto;
+        }
     }
 }

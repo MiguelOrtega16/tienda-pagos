@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using TiendaData.Models;
 
 namespace TiendaPagos.Models.Catalogo
 {
@@ -14,5 +15,6 @@ namespace TiendaPagos.Models.Catalogo
         public double Costo { get; set; } 
         public decimal Capacidad { get; set; }
         public string Estado { get; set; }
+        public CategoriaProducto Categoria { get; set; }
     }
 }
