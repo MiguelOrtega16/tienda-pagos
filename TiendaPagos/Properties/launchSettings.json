@@ -22,6 +22,14 @@
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
+    },
+    "TiendaPagosProd": {
+      "commandName": "Project",
+      "launchBrowser": true,
+      "applicationUrl": "https://tiendapagos.azurewebsites.net",
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Production"
+      }
     }
   }
 }
