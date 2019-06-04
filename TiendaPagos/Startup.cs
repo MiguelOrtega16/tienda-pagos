@@ -43,7 +43,7 @@ namespace TiendaPagos
             services.AddScoped<IClientes, ClientesService>();
 
             services.AddDbContext<TiendaContext>(options => 
-            options.UseSqlServer(Configuration.GetConnectionString("ConexionTiendaProd")));
+            options.UseSqlServer(Configuration.GetConnectionString("ConexionTiendaDesa")));
 
 
         }

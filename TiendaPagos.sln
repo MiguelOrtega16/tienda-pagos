@@ -1,13 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.28010.2046
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.28803.452
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TiendaPagos", "TiendaPagos\TiendaPagos.csproj", "{B75EEC99-A3E4-467C-AF0D-1BA09077CA1A}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TiendaData", "ProductsData\TiendaData.csproj", "{AA3D88D7-62AD-49E3-AA54-93F598A8624C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TiendaServices", "TiendaServices\TiendaServices.csproj", "{C4D49EC3-1EA2-42BF-97CE-4C5279F3C4FA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TiendaServices", "TiendaServices\TiendaServices.csproj", "{C4D49EC3-1EA2-42BF-97CE-4C5279F3C4FA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

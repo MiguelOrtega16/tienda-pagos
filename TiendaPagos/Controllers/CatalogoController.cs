@@ -3,6 +3,7 @@ using System;
 using System.Linq;
 using TiendaData;
 using TiendaData.Models;
+using TiendaPagos.Models;
 using TiendaPagos.Models.Catalogo;
 using TiendaPagos.Models.Pedidos;
 
@@ -52,6 +53,10 @@ namespace TiendaPagos.Controllers
         public IActionResult Detail(int id)
         {
             var producto = _productos.GetById(id);
+            if (producto == null)
+            {
+                return new NotFoundViewResult("NotFound");
+            }
             var registroPedidos = _pedidos.GetRegistrosPorProducto(id)
                 .Select(a => new RegistroPedidosDetalleModel
                 {

@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using TiendaData;
 using TiendaData.Models;
+using TiendaPagos.Models;
 using TiendaPagos.Models.Catalogo;
 using TiendaPagos.Models.Cliente;
 
@@ -57,6 +58,10 @@ namespace TiendaPagos.Controllers
 
             //Información general del cliente
             var clienteModel = _clientes.GetVistaClienteDetallePorId(id);
+            if (clienteModel == null)
+            {
+                return new NotFoundViewResult("NotFound");
+            }
             var model = new ClienteDetailModel
             {
                 Id = clienteModel.Id,
